@@ -1,329 +1,307 @@
 
+
 import { useEffect, useState } from "react";
 import API from "../services/axios";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { addToCart } from "../features/cart/cartSlice";
-import { addToWishlist, removeFromWishlist } from "../features/wishlist/wishlistSlice";
+import {
+  addToWishlist,
+  removeFromWishlist,
+} from "../features/wishlist/wishlistSlice";
+
 import toast from "react-hot-toast";
-import { useLocation } from "react-router-dom";
+
 import {
   ShoppingCart,
   Heart,
   MessageSquare,
   Send,
+  Star,
+  ShieldCheck,
 } from "lucide-react";
 
 function ProductDetail() {
-
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const { access } = useSelector((state) => state.auth);
-  const location = useLocation();
+  const wishlistItems = useSelector((state) => state.wishlist.items);
 
   const [product, setProduct] = useState(null);
   const [error, setError] = useState(null);
 
   const [loadingWish, setLoadingWish] = useState(false);
-  const wishlistItems = useSelector((state) => state.wishlist.items);
-const [canReview, setCanReview] = useState(false);
+  const [canReview, setCanReview] = useState(false);
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState("");
   const [reviews, setReviews] = useState([]);
 
-  
-  // ================= PRODUCT FETCH =================
+  // ================= PRODUCT =================
   useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        setError(null);
-        const res = await API.get(`products/${id}/`);
-        setProduct(res.data);
-      } catch (err) {
-        console.log(err);
-        setError("Failed to load product");
-      }
-    };
-
-    fetchProduct();
+    API.get(`products/${id}/`)
+      .then((res) => setProduct(res.data))
+      .catch(() => setError("Failed to load product"));
   }, [id]);
 
-  useEffect(() => {
-    if (!product) return;
-
-    const scrollToReviews = () => {
-      const el = document.getElementById("reviews");
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-      }
-    };
-
-    const timer = setTimeout(() => {
-      if (
-        window.location.hash === "#reviews" ||
-        location.state?.scrollToReviews
-      ) {
-        scrollToReviews();
-      }
-    }, 300);
-
-    return () => clearTimeout(timer);
-  }, [product, id, location]);
-
-  // ================= REVIEWS FETCH =================
+  // ================= REVIEWS =================
   useEffect(() => {
     API.get(`reviews/product/${id}/`)
       .then((res) => setReviews(res.data))
-      .catch((err) => console.log(err));
+      .catch(() => {});
   }, [id]);
 
-  // ================= CAN REVIEW CHECK =================
   useEffect(() => {
     if (!access) return;
-
     API.get(`reviews/can-review/${id}/`)
       .then((res) => setCanReview(res.data.can_review))
-      .catch((err) => console.log(err));
+      .catch(() => {});
   }, [id, access]);
 
-  // ================= ADD TO CART =================
+  // ================= CART =================
   const handleAddToCart = () => {
     if (!access) {
-      toast.error("Please login first");
+      toast.error("Login required");
       navigate("/login");
       return;
     }
 
-    if (!product) return;
+    dispatch(
+      addToCart({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+      })
+    );
 
-    dispatch(addToCart({
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      image: product.image,
-    }));
-
-    toast.success(`${product.name} added to cart 🛒`);
+    toast.success("Added to cart 🛒");
   };
 
-// ================= SUBMIT REVIEW =================
-const handleSubmitReview = async () => {
-
-  if (!comment.trim()) {
-    toast.error("Please write review");
-    return;
-  }
-
-  try {
-
-    await API.post(
-      `reviews/add/${id}/`,
-      {
-        rating,
-        comment,
-      }
-    );
-
-    toast.success("Review added successfully ⭐");
-
-    // RESET FORM
-    setComment("");
-    setRating(5);
-
-    // REFRESH REVIEWS
-    const res = await API.get(
-      `reviews/product/${id}/`
-    );
-
-    setReviews(res.data);
-
-    // HIDE REVIEW FORM
-    setCanReview(false);
-
-  } catch (err) {
-
-    console.log(err);
-
-    toast.error(
-      err.response?.data?.error ||
-      "Failed to submit review"
-    );
-  }
-};
-
-  // ================= ADD TO WISHLIST (FIXED ONLY THIS PART) =================
-  
-const handleAddToWishlist = async () => {
-  if (!access) {
-    toast.error("Please login first");
-    navigate("/login");
-    return;
-  }
-
-  if (!product) return;
-
-  const exists = wishlistItems.find(
-    (item) => item.id === product.id
-  );
-
-  setLoadingWish(true);
-
-  try {
-    if (exists) {
-      // ❌ REMOVE FROM WISHLIST
-      await API.delete(`wishlist/remove/${product.id}/`);
-
-      dispatch(removeFromWishlist(product.id));
-      toast.success("Removed from wishlist 💔");
-    } else {
-      // ✅ ADD TO WISHLIST
-      await API.post(`wishlist/add/${id}/`);
-
-      dispatch(addToWishlist({
-        id: product.id,
-        product_name: product.name,
-        product_price: product.price,
-        product_image: product.image,
-      }));
-
-      toast.success("Added to wishlist ❤️");
+  // ================= WISHLIST =================
+  const handleAddToWishlist = async () => {
+    if (!access) {
+      toast.error("Login required");
+      navigate("/login");
+      return;
     }
-  } catch (err) {
-    console.log(err);
-    toast.error("Wishlist action failed ❌");
-  }
 
-  setLoadingWish(false);
-};
-  
+    const exists = wishlistItems.find((i) => i.id === product.id);
+
+    setLoadingWish(true);
+
+    try {
+      if (exists) {
+        await API.delete(`wishlist/remove/${product.id}/`);
+        dispatch(removeFromWishlist(product.id));
+        toast.success("Removed ❤️");
+      } else {
+        await API.post(`wishlist/add/${id}/`);
+        dispatch(
+          addToWishlist({
+            id: product.id,
+            product_name: product.name,
+            product_price: product.price,
+            product_image: product.image,
+          })
+        );
+        toast.success("Added ❤️");
+      }
+    } catch {
+      toast.error("Wishlist failed");
+    }
+
+    setLoadingWish(false);
+  };
 
   // ================= LOADING =================
   if (!product) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="h-14 w-14 border-4 border-pink-500 border-t-transparent rounded-full animate-spin"></div>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 via-white to-orange-50">
+        <div className="h-12 w-12 border-4 border-pink-500 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
 
-  // ================= ERROR =================
   if (error) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <h2 className="text-red-500 text-2xl font-bold">{error}</h2>
+        <p className="text-red-500 text-xl font-bold">{error}</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-10 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-orange-50 py-14 px-4">
 
-      <div className="max-w-6xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden">
+      <div className="max-w-6xl mx-auto">
 
-        <div className="grid md:grid-cols-2 gap-10 p-8">
+        {/* MAIN CARD */}
+        <div className="bg-white/70 backdrop-blur-2xl border border-white/40 rounded-[32px] shadow-2xl overflow-hidden">
 
-          {/* IMAGE */}
-          <div className="flex justify-center items-center">
-            <img src={product.image} className="max-h-112.5" />
+          <div className="grid md:grid-cols-2 gap-12 p-12">
+
+            {/* IMAGE SECTION */}
+            <div className="flex items-center justify-center rounded-3xl bg-gradient-to-br from-pink-50 via-white to-orange-50 p-8 relative overflow-hidden">
+
+              <div className="absolute top-0 left-0 w-64 h-64 bg-pink-300/20 rounded-full blur-3xl"></div>
+
+              <img
+                src={product.image}
+                className="max-h-[420px] object-contain drop-shadow-2xl relative z-10 transition-transform duration-300 hover:scale-105"
+              />
+            </div>
+
+            {/* DETAILS */}
+            <div>
+
+              <span className="text-xs font-bold tracking-widest text-pink-500 uppercase">
+                Premium Product
+              </span>
+
+              <h1 className="text-4xl font-extrabold text-gray-900 mt-2 leading-tight">
+                {product.name}
+              </h1>
+
+              <p className="text-gray-500 mt-5 leading-relaxed">
+                {product.description}
+              </p>
+
+              <div className="mt-6 flex items-center gap-2 text-green-600 bg-green-50 w-fit px-3 py-1 rounded-full border border-green-100">
+                <ShieldCheck size={16} />
+                <span className="text-sm font-semibold">
+                  Verified Quality Product
+                </span>
+              </div>
+
+              <h2 className="text-4xl font-black text-pink-600 mt-6">
+                ₹ {product.price}
+              </h2>
+
+              {/* BUTTONS */}
+              <div className="flex gap-4 mt-10">
+
+                <button
+                  onClick={handleAddToCart}
+                  className="
+                    flex items-center gap-2
+                    px-6 py-3 rounded-2xl
+                    bg-gradient-to-r from-pink-500 to-orange-400
+                    text-white font-bold
+                    shadow-lg hover:shadow-xl
+                    hover:scale-105 transition
+                  "
+                >
+                  <ShoppingCart size={18} />
+                  Add To Cart
+                </button>
+
+                <button
+                  onClick={handleAddToWishlist}
+                  disabled={loadingWish}
+                  className="
+                    flex items-center gap-2
+                    px-6 py-3 rounded-2xl
+                    bg-white border border-pink-200
+                    text-pink-600 font-semibold
+                    hover:bg-pink-50 transition
+                    disabled:opacity-50
+                  "
+                >
+                  <Heart size={18} />
+                  {loadingWish ? "Loading..." : "Wishlist"}
+                </button>
+
+              </div>
+            </div>
+
           </div>
 
-          {/* DETAILS */}
-          <div>
-            <h1 className="text-3xl font-bold">{product.name}</h1>
-            <p className="text-gray-600 mt-2">{product.description}</p>
-            <h2 className="text-2xl text-pink-600 mt-4">
-              ₹ {product.price}
+          {/* REVIEWS SECTION */}
+          <div className="border-t bg-gradient-to-b from-white to-pink-50 p-12">
+
+            <h2 className="text-2xl font-extrabold flex items-center gap-2 text-gray-900">
+              <MessageSquare />
+              Customer Reviews
             </h2>
 
-            <div className="flex gap-4 mt-6">
+            <div className="mt-6 space-y-4">
 
-              <button
-                onClick={handleAddToCart}
-                className="bg-pink-500 text-white px-6 py-3 rounded-xl"
-              >
-                <ShoppingCart /> Add To Cart
-              </button>
-
-              <button
-                onClick={handleAddToWishlist}
-                disabled={loadingWish}
-                className="bg-orange-500 text-white px-6 py-3 rounded-xl disabled:opacity-50"
-              >
-                <Heart />
-                {loadingWish ? "Adding..." : "Wishlist"}
-              </button>
+              {reviews.length === 0 ? (
+                <p className="text-gray-500">No reviews yet</p>
+              ) : (
+                reviews.map((r) => (
+                  <div
+                    key={r.id}
+                    className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition"
+                  >
+                    <p className="font-bold text-yellow-500 flex items-center gap-1">
+                      <Star size={14} />
+                      {r.rating}
+                    </p>
+                    <p className="text-gray-600 mt-2">
+                      {r.comment}
+                    </p>
+                  </div>
+                ))
+              )}
 
             </div>
-          </div>
 
-        </div>
+            {/* REVIEW BOX */}
+            {access && canReview && (
+              <div className="mt-10 bg-white p-6 rounded-2xl shadow-md border">
 
-        {/* REVIEWS (UNCHANGED) */}
-        <div id="reviews" className="p-8 border-t">
-          <h2 className="text-2xl font-bold mb-5 flex items-center gap-2">
-            <MessageSquare />
-            Reviews
-          </h2>
+                <select
+                  value={rating}
+                  onChange={(e) => setRating(Number(e.target.value))}
+                  className="border p-3 rounded-xl w-full mb-4 focus:ring-2 focus:ring-pink-400 outline-none"
+                >
+                  <option value="5">⭐⭐⭐⭐⭐</option>
+                  <option value="4">⭐⭐⭐⭐</option>
+                  <option value="3">⭐⭐⭐</option>
+                  <option value="2">⭐⭐</option>
+                  <option value="1">⭐</option>
+                </select>
 
-          {!access && (
-            <p className="text-red-500 mb-3">
-              Login required to write review
-            </p>
-          )}
+                <textarea
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                  className="border w-full p-4 rounded-xl focus:ring-2 focus:ring-pink-400 outline-none"
+                  placeholder="Write your review..."
+                />
 
-          {access && !canReview && (
-            <p className="text-gray-500 mb-3">
-              You can review only after delivery
-            </p>
-          )}
+                <button
+                  onClick={async () => {
+                    await API.post(`reviews/add/${id}/`, {
+                      rating,
+                      comment,
+                    });
+                    toast.success("Review added");
+                    setComment("");
+                  }}
+                  className="
+                    mt-4
+                    bg-gradient-to-r from-pink-500 to-orange-400
+                    text-white px-6 py-3 rounded-xl
+                    flex items-center gap-2
+                    font-semibold
+                    hover:scale-105 transition
+                  "
+                >
+                  <Send size={16} />
+                  Submit Review
+                </button>
 
-          {access && canReview && (
-            <>
-              <select
-                value={rating}
-                onChange={(e) => setRating(Number(e.target.value))}
-                className="border p-2 mb-3"
-              >
-                <option value="5">5 ⭐</option>
-                <option value="4">4 ⭐</option>
-                <option value="3">3 ⭐</option>
-                <option value="2">2 ⭐</option>
-                <option value="1">1 ⭐</option>
-              </select>
-
-              <textarea
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
-                className="border w-full p-3 mb-3"
-              />
-<button
-  onClick={handleSubmitReview}
-  className="bg-green-500 text-white px-5 py-2 rounded-xl flex items-center gap-2"
->
-  <Send size={18} />
-  Submit
-</button>
-            </>
-          )}
-
-          <div className="mt-8">
-            {reviews.length === 0 ? (
-              <p>No reviews yet</p>
-            ) : (
-              reviews.map((r) => (
-                <div key={r.id} className="border p-3 mb-2">
-                  <p>⭐ {r.rating}</p>
-                  <p>{r.comment}</p>
-                </div>
-              ))
+              </div>
             )}
+
           </div>
 
         </div>
-
       </div>
     </div>
   );

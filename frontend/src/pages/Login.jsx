@@ -1,177 +1,5 @@
 
 
-
-// import { useState } from "react";
-// import API from "../services/axios";
-
-// import { useDispatch } from "react-redux";
-
-// import { setCredentials } from "../features/auth/authSlice";
-// import { loadUserCart } from "../features/cart/cartSlice";
-// import { setWishlist } from "../features/wishlist/wishlistSlice";
-
-// import { useNavigate, Link } from "react-router-dom";
-
-// import { LogIn, User, Lock } from "lucide-react";
-
-// function Login() {
-//   const dispatch = useDispatch();
-//   const navigate = useNavigate();
-
-//   const [formData, setFormData] = useState({
-//     username: "",
-//     password: "",
-//   });
-
-//   const handleChange = (e) => {
-//     setFormData({
-//       ...formData,
-//       [e.target.name]: e.target.value,
-//     });
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     try {
-//       const res = await API.post("token/", formData);
-
-//       const access = res.data.access;
-//       const refresh = res.data.refresh;
-//       const user = res.data.user;
-//       const role = user.role;
-
-//       // ======================
-//       // LOCAL STORAGE
-//       // ======================
-//       localStorage.setItem("access", access);
-//       localStorage.setItem("refresh", refresh);
-//       localStorage.setItem("role", role);
-//       localStorage.setItem("user", JSON.stringify(user));
-
-//       // ======================
-//       // REDUX AUTH
-//       // ======================
-//       dispatch(
-//         setCredentials({
-//           access,
-//           refresh,
-//           user,
-//           role,
-//         })
-//       );
-
-//       // ======================
-//       // LOAD CART
-//       // ======================
-//       dispatch(loadUserCart());
-
-//       // ======================
-//       // LOAD WISHLIST (🔥 FIX)
-//       // ======================
-//       try {
-//         const wishlistRes = await API.get("wishlist/");
-//         dispatch(setWishlist(wishlistRes.data));
-//       } catch (err) {
-//         console.log("Wishlist load failed:", err);
-//       }
-
-//       alert("Login Success");
-
-//       // ======================
-//       // NAVIGATE
-//       // ======================
-//       if (role === "vendor") {
-//         navigate("/vendor-dashboard");
-//       } else {
-//         navigate("/");
-//       }
-//     } catch (err) {
-//       console.log(err);
-//       alert("Login Failed");
-//     }
-//   };
-
-//   return (
-//     <div className="min-h-screen bg-linear-to-b from-[#0b0f19] via-[#111827] to-[#0b0f19] flex items-center justify-center px-4">
-
-//       <form
-//         onSubmit={handleSubmit}
-//         className="w-full max-w-md bg-white/5 border border-white/10 backdrop-blur-md p-8 rounded-3xl shadow-2xl space-y-6 text-white"
-//       >
-
-//         {/* HEADER */}
-//         <div className="text-center">
-
-//           <div className="flex justify-center mb-3">
-//             <LogIn size={34} className="text-amber-400" />
-//           </div>
-
-//           <h1 className="text-3xl font-bold">
-//             Welcome Back
-//           </h1>
-
-//           <p className="text-slate-400 mt-2">
-//             Login to continue your shopping experience
-//           </p>
-
-//         </div>
-
-//         {/* USERNAME */}
-//         <div className="relative">
-
-//           <User className="absolute left-3 top-3 text-slate-400" size={18} />
-
-//           <input
-//             name="username"
-//             onChange={handleChange}
-//             placeholder="Username"
-//             className="w-full bg-white/5 border border-white/10 rounded-xl px-10 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400 text-white"
-//           />
-
-//         </div>
-
-//         {/* PASSWORD */}
-//         <div className="relative">
-
-//           <Lock className="absolute left-3 top-3 text-slate-400" size={18} />
-
-//           <input
-//             name="password"
-//             type="password"
-//             onChange={handleChange}
-//             placeholder="Password"
-//             className="w-full bg-white/5 border border-white/10 rounded-xl px-10 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400 text-white"
-//           />
-
-//         </div>
-
-//         {/* BUTTON */}
-//         <button
-//           type="submit"
-//           className="w-full bg-amber-400 hover:bg-amber-500 text-black py-3 rounded-xl font-semibold text-lg transition"
-//         >
-//           Login
-//         </button>
-
-//         {/* FOOTER */}
-//         <div className="text-center text-sm text-slate-400">
-//           Don’t have an account?{" "}
-//           <Link
-//             to="/register"
-//             className="text-amber-400 hover:text-amber-300 font-medium"
-//           >
-//             Create Account
-//           </Link>
-//         </div>
-
-//       </form>
-
-//     </div>
-//   );
-// }
-
-// export default Login;
 import { useState } from "react";
 
 import API from "../services/axios";
@@ -198,7 +26,6 @@ import {
 function Login() {
 
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
@@ -208,46 +35,26 @@ function Login() {
     password: "",
   });
 
-  // ================= HANDLE CHANGE =================
   const handleChange = (e) => {
-
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
-  // ================= HANDLE SUBMIT =================
   const handleSubmit = async (e) => {
-
     e.preventDefault();
-
     setLoading(true);
 
     try {
-
       const res = await API.post("token/", formData);
 
-      const access = res.data.access
-
+      const access = res.data.access;
       const refresh = res.data.refresh;
 
       const user = res.data.user || {};
-const role = user.role || "";
+      const role = user.role || "";
 
-      // ================= LOCAL STORAGE =================
-      localStorage.setItem("access", access);
-
-      localStorage.setItem("refresh", refresh);
-
-      localStorage.setItem("role", role);
-
-      localStorage.setItem(
-        "user",
-        JSON.stringify(user)
-      );
-
-      // ================= REDUX =================
       dispatch(
         setCredentials({
           access,
@@ -257,255 +64,168 @@ const role = user.role || "";
         })
       );
 
-      // ================= LOAD CART =================
       dispatch(loadUserCart());
 
-      // ================= LOAD WISHLIST =================
       try {
-
         const wishlistRes = await API.get("wishlist/");
-
         dispatch(setWishlist(wishlistRes.data));
-
       } catch (err) {
-
         console.log(err);
-
       }
 
       toast.success("Login Successful 🎉");
 
-      // ================= NAVIGATE =================
       if (role === "vendor") {
-
         navigate("/vendor-dashboard");
-
       } else {
-
         navigate("/");
       }
 
     } catch (err) {
-
       console.log(err);
-
       toast.error("Invalid username or password ❌");
-
     } finally {
-
       setLoading(false);
     }
   };
 
   return (
+    <div className="min-h-screen flex items-center justify-center px-4 py-10 relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-100">
 
-    <div className="min-h-screen bg-linear-to-br from-[#fdf2f8] via-white to-[#fff7ed] flex items-center justify-center px-4 py-10 relative overflow-hidden">
+      {/* SOFT BACKGROUND BLOBS */}
+      <div className="absolute -top-32 -left-32 w-[500px] h-[500px] bg-pink-300/30 blur-3xl rounded-full"></div>
+      <div className="absolute -bottom-32 -right-32 w-[500px] h-[500px] bg-orange-300/30 blur-3xl rounded-full"></div>
 
-      {/* ================= BACKGROUND GLOW ================= */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-pink-300/30 rounded-full blur-3xl"></div>
+      {/* MAIN CARD */}
+      <div className="relative z-10 w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 bg-white/70 backdrop-blur-2xl border border-white/40 rounded-[32px] shadow-2xl overflow-hidden">
 
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-orange-300/30 rounded-full blur-3xl"></div>
+        {/* LEFT PANEL */}
+        <div className="hidden lg:flex flex-col justify-center p-14 text-white bg-gradient-to-br from-pink-500 via-rose-500 to-orange-400 relative">
 
-      {/* ================= LOGIN CARD ================= */}
-      <div className="relative z-10 w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 bg-white/80 backdrop-blur-2xl border border-pink-100 rounded-[40px] overflow-hidden shadow-2xl">
-
-        {/* ================= LEFT SIDE ================= */}
-        <div className="hidden lg:flex flex-col justify-center bg-linear-to-br from-pink-500 via-rose-500 to-orange-400 p-12 text-white relative overflow-hidden">
-
-          {/* GLOW */}
-          <div className="absolute -top-20 -right-20 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
-
-          <div className="absolute bottom-0 left-0 w-72 h-72 bg-yellow-300/10 rounded-full blur-3xl"></div>
+          <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top_left,white,transparent)]"></div>
 
           <div className="relative z-10">
 
-            <div className="h-20 w-20 rounded-3xl bg-white/20 flex items-center justify-center mb-8 backdrop-blur-xl">
-
-              <ShoppingBag size={40} />
-
+            <div className="w-20 h-20 flex items-center justify-center rounded-2xl bg-white/20 backdrop-blur-xl mb-8 shadow-lg">
+              <ShoppingBag size={38} />
             </div>
 
-            <h1 className="text-5xl font-black leading-tight">
-
+            <h1 className="text-5xl font-extrabold tracking-tight">
               NovaMart
-
             </h1>
 
-            <p className="mt-6 text-lg text-white/90 leading-relaxed">
-
-              Login and continue your premium shopping
-              experience with trusted vendors worldwide.
-
+            <p className="mt-5 text-white/90 text-lg leading-relaxed">
+              Experience a modern multi-vendor shopping platform built for speed, trust, and simplicity.
             </p>
 
-            <div className="mt-10 space-y-4">
+            <div className="mt-10 space-y-4 text-white/90">
 
               <div className="flex items-center gap-3">
-
-                <div className="h-3 w-3 rounded-full bg-white"></div>
-
-                <p className="text-white/90">
-
-                  Secure Authentication
-
-                </p>
-
+                <span className="w-2 h-2 bg-white rounded-full"></span>
+                Secure Authentication System
               </div>
 
               <div className="flex items-center gap-3">
-
-                <div className="h-3 w-3 rounded-full bg-white"></div>
-
-                <p className="text-white/90">
-
-                  Fast Checkout Experience
-
-                </p>
-
+                <span className="w-2 h-2 bg-white rounded-full"></span>
+                Smooth Checkout Experience
               </div>
 
               <div className="flex items-center gap-3">
-
-                <div className="h-3 w-3 rounded-full bg-white"></div>
-
-                <p className="text-white/90">
-
-                  Trusted Multi Vendor Platform
-
-                </p>
-
+                <span className="w-2 h-2 bg-white rounded-full"></span>
+                Multi-Vendor Architecture
               </div>
 
             </div>
 
           </div>
-
         </div>
 
-        {/* ================= RIGHT SIDE ================= */}
-        <div className="p-8 sm:p-12 flex flex-col justify-center">
+        {/* RIGHT PANEL */}
+        <div className="p-10 sm:p-14 flex flex-col justify-center">
 
-          {/* MOBILE LOGO */}
+          {/* MOBILE ICON */}
           <div className="lg:hidden flex justify-center mb-8">
-
-            <div className="h-20 w-20 rounded-3xl bg-linear-to-r from-pink-500 to-orange-400 flex items-center justify-center shadow-xl">
-
-              <ShoppingBag
-                size={38}
-                className="text-white"
-              />
-
+            <div className="w-20 h-20 rounded-2xl bg-gradient-to-r from-pink-500 to-orange-400 flex items-center justify-center shadow-lg">
+              <ShoppingBag size={36} className="text-white" />
             </div>
-
           </div>
 
           {/* TITLE */}
-          <div className="text-center lg:text-left mb-8">
-
-            <h2 className="text-4xl font-black text-gray-800">
-
-              Welcome Back 👋
-
+          <div className="text-center lg:text-left mb-10">
+            <h2 className="text-4xl font-extrabold text-gray-800">
+              Welcome Back
             </h2>
 
-            <p className="text-gray-500 mt-3 leading-relaxed">
+            <div className="w-16 h-1 bg-gradient-to-r from-pink-500 to-orange-400 rounded-full mt-3 mx-auto lg:mx-0"></div>
 
-              Sign in to your account and continue shopping.
-
+            <p className="text-gray-500 mt-4">
+              Login to continue your shopping journey
             </p>
-
           </div>
 
           {/* FORM */}
-          <form
-            onSubmit={handleSubmit}
-            className="space-y-5"
-          >
+          <form onSubmit={handleSubmit} className="space-y-6">
 
             {/* USERNAME */}
-            <div className="relative">
-
-              <User
-                className="absolute left-4 top-4 text-pink-400"
-                size={20}
-              />
+            <div className="relative group">
+              <User className="absolute left-4 top-4 text-pink-400" size={20} />
 
               <input
                 name="username"
                 value={formData.username}
                 onChange={handleChange}
-                placeholder="Enter username"
+                placeholder="Username"
                 required
-                className="w-full bg-pink-50 border border-pink-100 rounded-2xl px-12 py-4 outline-none focus:ring-2 focus:ring-pink-400 text-gray-700 placeholder-gray-400"
+                className="w-full bg-gray-50 border border-gray-200 rounded-2xl px-12 py-4 outline-none focus:ring-2 focus:ring-pink-400 transition shadow-sm"
               />
-
             </div>
 
             {/* PASSWORD */}
-            <div className="relative">
-
-              <Lock
-                className="absolute left-4 top-4 text-pink-400"
-                size={20}
-              />
+            <div className="relative group">
+              <Lock className="absolute left-4 top-4 text-pink-400" size={20} />
 
               <input
                 name="password"
                 type="password"
                 value={formData.password}
                 onChange={handleChange}
-                placeholder="Enter password"
+                placeholder="Password"
                 required
-                className="w-full bg-pink-50 border border-pink-100 rounded-2xl px-12 py-4 outline-none focus:ring-2 focus:ring-pink-400 text-gray-700 placeholder-gray-400"
+                className="w-full bg-gray-50 border border-gray-200 rounded-2xl px-12 py-4 outline-none focus:ring-2 focus:ring-pink-400 transition shadow-sm"
               />
-
             </div>
 
             {/* BUTTON */}
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-linear-to-r from-pink-500 to-orange-400 hover:opacity-90 text-white py-4 rounded-2xl font-bold text-lg shadow-lg transition-all duration-300 hover:scale-[1.01] disabled:opacity-50"
+              className="w-full bg-gradient-to-r from-pink-500 to-orange-400 text-white py-4 rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition transform hover:scale-[1.02] disabled:opacity-50"
             >
-
-              {
-                loading
-                  ? "Logging in..."
-                  : (
-                    <span className="flex items-center justify-center gap-2">
-
-                      <LogIn size={20} />
-
-                      Login
-
-                    </span>
-                  )
-              }
-
+              {loading ? (
+                "Logging in..."
+              ) : (
+                <span className="flex items-center justify-center gap-2">
+                  <LogIn size={20} />
+                  Login
+                </span>
+              )}
             </button>
 
           </form>
 
           {/* FOOTER */}
-          <div className="text-center mt-8 text-gray-500">
-
+          <p className="text-center mt-8 text-gray-500">
             Don’t have an account?{" "}
-
             <Link
               to="/register"
-              className="font-semibold text-pink-500 hover:text-orange-400 transition"
+              className="text-pink-500 font-semibold hover:text-orange-400 transition"
             >
-
               Create Account
-
             </Link>
-
-          </div>
+          </p>
 
         </div>
-
       </div>
-
     </div>
   );
 }

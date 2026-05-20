@@ -1,4 +1,3 @@
-
 from django.db import models
 from orders.models import Order
 
@@ -34,6 +33,20 @@ class Payment(models.Model):
 
     transaction_id = models.CharField(
         max_length=200,
+        blank=True,
+        null=True
+    )
+
+    # ✅ ADD THIS
+    razorpay_order_id = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True
+    )
+
+    # ✅ ADD THIS
+    razorpay_payment_id = models.CharField(
+        max_length=255,
         blank=True,
         null=True
     )

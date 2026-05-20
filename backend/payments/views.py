@@ -1,7 +1,7 @@
 import razorpay
 
 from django.conf import settings
-from django.db import transaction
+
 
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -39,12 +39,9 @@ def create_razorpay_order(request, order_id):
             customer=request.user
         )
     except Order.DoesNotExist:
-        return Response(
-            {"error": "Order not found"},
-            status=status.HTTP_404_NOT_FOUND
-        )
+        return Response({"error": "Order not found"}, status=404)
 
-    # Razorpay expects paise
+    # FIX: ensure correct amount source
     amount = int(order.total_price * 100)
 
     razorpay_order = client.order.create({
@@ -58,7 +55,7 @@ def create_razorpay_order(request, order_id):
         payment_method='razorpay',
         payment_status='pending',
         amount=order.total_price,
-        transaction_id=razorpay_order['id']  # Razorpay ORDER ID
+        razorpay_order_id=razorpay_order['id']  # ✅ FIXED (separate field)
     )
 
     return Response({
@@ -67,6 +64,9 @@ def create_razorpay_order(request, order_id):
         "key": settings.RAZORPAY_KEY_ID,
         "payment_id": payment.id
     })
+    
+
+    
 
 
 # =========================================
@@ -77,29 +77,24 @@ def create_razorpay_order(request, order_id):
 @permission_classes([IsAuthenticated])
 def payment_success(request):
 
-    razorpay_payment_id = request.data.get('razorpay_payment_id')
-    razorpay_order_id = request.data.get('razorpay_order_id')
-    razorpay_signature = request.data.get('razorpay_signature')
-    payment_id = request.data.get('payment_id')
+    data = request.data
+
+    razorpay_payment_id = data.get('razorpay_payment_id')
+    razorpay_order_id = data.get('razorpay_order_id')
+    razorpay_signature = data.get('razorpay_signature')
+    payment_id = data.get('payment_id')
 
     if not all([razorpay_payment_id, razorpay_order_id, razorpay_signature, payment_id]):
-        return Response(
-            {"error": "Missing payment data"},
-            status=status.HTTP_400_BAD_REQUEST
-        )
+        return Response({"error": "Missing payment data"}, status=400)
 
     try:
         payment = Payment.objects.get(
             id=payment_id,
-            transaction_id=razorpay_order_id
+            razorpay_order_id=razorpay_order_id
         )
     except Payment.DoesNotExist:
-        return Response(
-            {"error": "Payment not found"},
-            status=status.HTTP_404_NOT_FOUND
-        )
+        return Response({"error": "Payment not found"}, status=404)
 
-    # 🔐 VERIFY SIGNATURE WITH RAZORPAY
     params_dict = {
         'razorpay_order_id': razorpay_order_id,
         'razorpay_payment_id': razorpay_payment_id,
@@ -112,21 +107,16 @@ def payment_success(request):
     except razorpay.errors.SignatureVerificationError:
         payment.payment_status = "failed"
         payment.save()
+        return Response({"error": "Invalid signature"}, status=400)
 
-        return Response(
-            {"error": "Invalid payment signature"},
-            status=status.HTTP_400_BAD_REQUEST
-        )
-
-    # ✅ SUCCESS
+    # SUCCESS
     payment.payment_status = "completed"
-    payment.transaction_id = razorpay_payment_id
+    payment.razorpay_payment_id = razorpay_payment_id  # ✅ FIX
     payment.save()
 
-    return Response({
-        "message": "Payment successful"
-    })
-
+    return Response({"message": "Payment successful"})
+          
+    
 
 # =========================================
 # 💵 CASH ON DELIVERY
@@ -142,10 +132,7 @@ def cash_on_delivery(request, order_id):
             customer=request.user
         )
     except Order.DoesNotExist:
-        return Response(
-            {"error": "Order not found"},
-            status=status.HTTP_404_NOT_FOUND
-        )
+        return Response({"error": "Order not found"}, status=404)
 
     Payment.objects.create(
         order=order,
@@ -154,9 +141,7 @@ def cash_on_delivery(request, order_id):
         amount=order.total_price
     )
 
-    return Response({
-        "message": "COD order placed successfully"
-    })
+    return Response({"message": "COD order placed successfully"})
 
 
 # =========================================

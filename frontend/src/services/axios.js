@@ -1,7 +1,9 @@
+
+
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:8000/api/",
+  baseURL: "http://127.0.0.1:8000/api/",
 });
 
 // ================= REQUEST INTERCEPTOR =================
@@ -21,8 +23,35 @@ API.interceptors.request.use(
 // ================= RESPONSE INTERCEPTOR =================
 API.interceptors.response.use(
   (response) => response,
-  (error) => {
-    console.log("API ERROR:", error.response?.data || error.message);
+
+  async (error) => {
+    const originalRequest = error.config;
+
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+
+      try {
+        const refresh = localStorage.getItem("refresh");
+
+        const res = await axios.post(
+          "http://127.0.0.1:8000/api/token/refresh/",
+          { refresh }
+        );
+
+        const newAccess = res.data.access;
+
+        localStorage.setItem("access", newAccess);
+
+        originalRequest.headers.Authorization = `Bearer ${newAccess}`;
+
+        return API(originalRequest);
+      } catch (err) {
+        // hard logout
+        localStorage.clear();
+        window.location.href = "/login";
+      }
+    }
+
     return Promise.reject(error);
   }
 );
