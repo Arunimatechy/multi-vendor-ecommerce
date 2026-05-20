@@ -47,15 +47,15 @@ function Navbar() {
         <Link to="/" className="flex items-center gap-3 group">
 
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-orange-400 blur-xl opacity-40 group-hover:opacity-70 transition rounded-2xl"></div>
+            <div className="absolute inset-0 bg-linear-to-r from-pink-500 to-orange-400 blur-xl opacity-40 group-hover:opacity-70 transition rounded-2xl"></div>
 
-            <div className="relative h-11 w-11 rounded-2xl bg-gradient-to-r from-pink-500 via-rose-500 to-orange-400 flex items-center justify-center shadow-lg">
+            <div className="relative h-11 w-11 rounded-2xl bg-linear-to-r from-pink-500 via-rose-500 to-orange-400 flex items-center justify-center shadow-lg">
               <Store size={22} className="text-white" />
             </div>
           </div>
 
           <div>
-            <h1 className="text-2xl font-black tracking-tight bg-gradient-to-r from-pink-500 via-rose-500 to-orange-400 bg-clip-text text-transparent">
+            <h1 className="text-2xl font-black tracking-tight bg-linear-to-r from-pink-500 via-rose-500 to-orange-400 bg-clip-text text-transparent">
               Luxora
             </h1>
 
@@ -94,7 +94,7 @@ function Navbar() {
 
               <Link
                 to="/register"
-                className={`${baseBtn} bg-gradient-to-r from-pink-500 to-orange-400 text-white shadow-md hover:shadow-lg`}
+                className={`${baseBtn} bg-linear-to-r from-pink-500 to-orange-400 text-white shadow-md hover:shadow-lg`}
               >
                 <UserPlus size={18} />
                 Register
@@ -106,7 +106,7 @@ function Navbar() {
           {access && userRole === "customer" && (
             <>
               <div
-                className={`${baseBtn} bg-gradient-to-r from-pink-50 to-orange-50 border border-pink-100 text-pink-600`}
+                className={`${baseBtn} bg-linear-to-r from-pink-50 to-orange-50 border border-pink-100 text-pink-600`}
               >
                 <User size={18} />
                 {user?.username || "User"}
@@ -118,7 +118,7 @@ function Navbar() {
               >
                 <ShoppingCart size={18} />
                 Cart
-                <span className="ml-1 bg-gradient-to-r from-pink-500 to-orange-400 text-white text-xs px-2 py-0.5 rounded-full">
+                <span className="ml-1 bg-linear-to-r from-pink-500 to-orange-400 text-white text-xs px-2 py-0.5 rounded-full">
                   {cartItems?.length || 0}
                 </span>
               </Link>
@@ -148,7 +148,7 @@ function Navbar() {
           {access && userRole === "vendor" && (
             <Link
               to="/vendor-dashboard"
-              className={`${baseBtn} bg-gradient-to-r from-violet-500 to-indigo-600 text-white shadow-md hover:shadow-lg`}
+              className={`${baseBtn} bg-linear-to-r from-violet-500 to-indigo-600 text-white shadow-md hover:shadow-lg`}
             >
               <LayoutDashboard size={18} />
               Dashboard
@@ -159,7 +159,7 @@ function Navbar() {
           {access && (
             <button
               onClick={handleLogout}
-              className={`${baseBtn} bg-gradient-to-r from-red-500 to-rose-600 text-white shadow-md hover:shadow-lg`}
+              className={`${baseBtn} bg-linear-to-r from-red-500 to-rose-600 text-white shadow-md hover:shadow-lg`}
             >
               <LogOut size={18} />
               Logout

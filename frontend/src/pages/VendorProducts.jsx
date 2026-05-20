@@ -72,14 +72,14 @@ function VendorProducts() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 via-white to-orange-50">
+      <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-pink-50 via-white to-orange-50">
         <div className="h-16 w-16 border-4 border-pink-500 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-orange-50 py-12 px-4 relative overflow-hidden">
+    <div className="min-h-screen bg-linear-to-br from-pink-50 via-white to-orange-50 py-12 px-4 relative overflow-hidden">
 
       {/* BACKGROUND GLOW */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-pink-300/20 rounded-full blur-3xl"></div>
@@ -92,7 +92,7 @@ function VendorProducts() {
 
           <div>
 
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-orange-400 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-md">
+            <div className="inline-flex items-center gap-2 bg-linear-to-r from-pink-500 to-orange-400 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-md">
               <Boxes size={16} />
               Vendor Dashboard
             </div>
@@ -109,7 +109,7 @@ function VendorProducts() {
 
           <Link
             to="/add-product"
-            className="bg-gradient-to-r from-pink-500 to-orange-400 hover:opacity-90 text-white px-7 py-4 rounded-2xl font-bold flex items-center gap-3 shadow-xl transition-transform hover:scale-105"
+            className="bg-linear-to-r from-pink-500 to-orange-400 hover:opacity-90 text-white px-7 py-4 rounded-2xl font-bold flex items-center gap-3 shadow-xl transition-transform hover:scale-105"
           >
             <Plus size={20} />
             Add Product
@@ -122,7 +122,7 @@ function VendorProducts() {
 
           <div className="bg-white/80 backdrop-blur-2xl border border-pink-100 rounded-[40px] p-16 text-center shadow-2xl">
 
-            <div className="w-24 h-24 mx-auto bg-gradient-to-r from-pink-500 to-orange-400 rounded-full flex items-center justify-center shadow-xl mb-6">
+            <div className="w-24 h-24 mx-auto bg-linear-to-r from-pink-500 to-orange-400 rounded-full flex items-center justify-center shadow-xl mb-6">
               <Package size={40} className="text-white" />
             </div>
 
@@ -136,7 +136,7 @@ function VendorProducts() {
 
             <Link
               to="/add-product"
-              className="inline-flex items-center gap-3 mt-8 bg-gradient-to-r from-pink-500 to-orange-400 text-white px-8 py-4 rounded-2xl font-bold shadow-lg hover:scale-105 transition"
+              className="inline-flex items-center gap-3 mt-8 bg-linear-to-r from-pink-500 to-orange-400 text-white px-8 py-4 rounded-2xl font-bold shadow-lg hover:scale-105 transition"
             >
               <Plus size={20} />
               Add Product
@@ -152,11 +152,11 @@ function VendorProducts() {
 
               <div
                 key={product.id}
-                className="group bg-white/80 backdrop-blur-2xl border border-pink-100 rounded-[32px] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+                className="group bg-white/80 backdrop-blur-2xl border border-pink-100 rounded-4xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
               >
 
                 {/* IMAGE */}
-                <div className="h-72 overflow-hidden bg-gradient-to-br from-pink-50 to-orange-50">
+                <div className="h-72 overflow-hidden bg-linear-to-br from-pink-50 to-orange-50">
                   <img
                     src={product.image}
                     alt={product.name}
@@ -178,7 +178,7 @@ function VendorProducts() {
                     </span>
                   </p>
 
-                  <h3 className="text-3xl font-black mt-4 bg-gradient-to-r from-pink-500 to-orange-400 bg-clip-text text-transparent">
+                  <h3 className="text-3xl font-black mt-4 bg-linear-to-r from-pink-500 to-orange-400 bg-clip-text text-transparent">
                     ₹ {product.price}
                   </h3>
 

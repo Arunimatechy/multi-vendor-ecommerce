@@ -116,14 +116,14 @@ function EditProduct() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-gray-100">
+      <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-gray-50 via-white to-gray-100">
         <div className="h-14 w-14 border-4 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 py-10 px-4">
+    <div className="min-h-screen bg-linear-to-br from-gray-50 via-white to-gray-100 py-10 px-4">
 
       <div className="max-w-5xl mx-auto">
 
@@ -131,7 +131,7 @@ function EditProduct() {
         <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
 
           {/* HEADER */}
-          <div className="bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-400 p-8 text-white relative overflow-hidden">
+          <div className="bg-linear-to-r from-orange-500 via-amber-500 to-yellow-400 p-8 text-white relative overflow-hidden">
             <div className="absolute -top-10 -right-10 w-72 h-72 bg-white/10 rounded-full blur-3xl"></div>
 
             <div className="flex items-center gap-4 relative z-10">
@@ -242,7 +242,7 @@ function EditProduct() {
             </div>
 
             {/* BUTTON */}
-            <button className="w-full bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-2 hover:scale-[1.01] transition">
+            <button className="w-full bg-linear-to-r from-orange-500 to-amber-500 text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-2 hover:scale-[1.01] transition">
               <Save size={18} />
               Update Product
             </button>

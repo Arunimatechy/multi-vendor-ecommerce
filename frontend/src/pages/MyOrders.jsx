@@ -85,20 +85,20 @@ function MyOrders() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 to-orange-50">
+      <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-pink-50 to-orange-50">
         <div className="h-14 w-14 border-4 border-pink-500 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-orange-50 py-12 px-4">
+    <div className="min-h-screen bg-linear-to-br from-pink-50 via-white to-orange-50 py-12 px-4">
 
       <div className="max-w-6xl mx-auto">
 
         {/* HEADER */}
         <div className="flex items-center gap-4 mb-10">
-          <div className="h-14 w-14 rounded-2xl bg-gradient-to-r from-pink-500 to-orange-400 flex items-center justify-center text-white shadow-lg">
+          <div className="h-14 w-14 rounded-2xl bg-linear-to-r from-pink-500 to-orange-400 flex items-center justify-center text-white shadow-lg">
             <ShoppingBag size={26} />
           </div>
 
@@ -151,7 +151,7 @@ function MyOrders() {
                     <p className="text-gray-500 text-sm">
                       Total Amount
                     </p>
-                    <h2 className="text-3xl font-black bg-gradient-to-r from-pink-500 to-orange-400 bg-clip-text text-transparent">
+                    <h2 className="text-3xl font-black bg-linear-to-r from-pink-500 to-orange-400 bg-clip-text text-transparent">
                       ₹ {order.total_price}
                     </h2>
                   </div>
@@ -176,7 +176,7 @@ function MyOrders() {
                     return (
                       <div
                         key={item.id}
-                        className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-5 rounded-2xl bg-gradient-to-r from-pink-50 to-orange-50 border border-pink-100 hover:scale-[1.01] transition"
+                        className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-5 rounded-2xl bg-linear-to-r from-pink-50 to-orange-50 border border-pink-100 hover:scale-[1.01] transition"
                       >
 
                         {/* LEFT */}
@@ -205,7 +205,7 @@ function MyOrders() {
                             canReviewMap[productId] === true && (
                               <Link
                                 to={`/product/${productId}`}
-                                className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow hover:opacity-90"
+                                className="bg-linear-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow hover:opacity-90"
                               >
                                 ⭐ Write Review
                               </Link>

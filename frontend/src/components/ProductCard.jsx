@@ -103,7 +103,7 @@ function ProductCard({ product }) {
         <div className="absolute top-3 left-3 z-10 flex gap-2">
 
           {hasDiscount && (
-            <div className="bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
+            <div className="bg-linear-to-r from-red-500 to-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
               {discountPercentage}% OFF
             </div>
           )}
@@ -165,7 +165,7 @@ function ProductCard({ product }) {
         {/* PRODUCT NAME */}
         <h3 className="
           text-base font-semibold text-gray-900
-          line-clamp-2 min-h-[48px]
+          line-clamp-2 min-h-12
           group-hover:text-pink-600
           transition
         ">
@@ -226,7 +226,7 @@ function ProductCard({ product }) {
             onClick={handleAddToCart}
             className="
               flex items-center justify-center gap-2
-              bg-gradient-to-r from-gray-900 to-black
+              bg-linear-to-r from-gray-900 to-black
               hover:from-pink-500 hover:to-orange-400
               text-white
               py-2.5 rounded-xl

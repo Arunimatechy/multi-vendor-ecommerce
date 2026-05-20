@@ -120,7 +120,7 @@ function ProductDetail() {
   // ================= LOADING =================
   if (!product) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 via-white to-orange-50">
+      <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-pink-50 via-white to-orange-50">
         <div className="h-12 w-12 border-4 border-pink-500 border-t-transparent rounded-full animate-spin" />
       </div>
     );
@@ -135,23 +135,23 @@ function ProductDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-orange-50 py-14 px-4">
+    <div className="min-h-screen bg-linear-to-br from-pink-50 via-white to-orange-50 py-14 px-4">
 
       <div className="max-w-6xl mx-auto">
 
         {/* MAIN CARD */}
-        <div className="bg-white/70 backdrop-blur-2xl border border-white/40 rounded-[32px] shadow-2xl overflow-hidden">
+        <div className="bg-white/70 backdrop-blur-2xl border border-white/40 rounded-4xl shadow-2xl overflow-hidden">
 
           <div className="grid md:grid-cols-2 gap-12 p-12">
 
             {/* IMAGE SECTION */}
-            <div className="flex items-center justify-center rounded-3xl bg-gradient-to-br from-pink-50 via-white to-orange-50 p-8 relative overflow-hidden">
+            <div className="flex items-center justify-center rounded-3xl bg-linear-to-br from-pink-50 via-white to-orange-50 p-8 relative overflow-hidden">
 
               <div className="absolute top-0 left-0 w-64 h-64 bg-pink-300/20 rounded-full blur-3xl"></div>
 
               <img
                 src={product.image}
-                className="max-h-[420px] object-contain drop-shadow-2xl relative z-10 transition-transform duration-300 hover:scale-105"
+                className="max-h-105 object-contain drop-shadow-2xl relative z-10 transition-transform duration-300 hover:scale-105"
               />
             </div>
 
@@ -189,7 +189,7 @@ function ProductDetail() {
                   className="
                     flex items-center gap-2
                     px-6 py-3 rounded-2xl
-                    bg-gradient-to-r from-pink-500 to-orange-400
+                    bg-linear-to-r from-pink-500 to-orange-400
                     text-white font-bold
                     shadow-lg hover:shadow-xl
                     hover:scale-105 transition
@@ -221,7 +221,7 @@ function ProductDetail() {
           </div>
 
           {/* REVIEWS SECTION */}
-          <div className="border-t bg-gradient-to-b from-white to-pink-50 p-12">
+          <div className="border-t bg-linear-to-b from-white to-pink-50 p-12">
 
             <h2 className="text-2xl font-extrabold flex items-center gap-2 text-gray-900">
               <MessageSquare />
@@ -285,7 +285,7 @@ function ProductDetail() {
                   }}
                   className="
                     mt-4
-                    bg-gradient-to-r from-pink-500 to-orange-400
+                    bg-linear-to-r from-pink-500 to-orange-400
                     text-white px-6 py-3 rounded-xl
                     flex items-center gap-2
                     font-semibold

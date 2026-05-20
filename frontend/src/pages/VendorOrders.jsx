@@ -85,19 +85,19 @@ function VendorOrders() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 via-white to-orange-50">
+      <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-pink-50 via-white to-orange-50">
         <div className="h-14 w-14 border-4 border-pink-500 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-orange-50 px-4 py-12">
+    <div className="min-h-screen bg-linear-to-br from-pink-50 via-white to-orange-50 px-4 py-12">
 
       <div className="max-w-7xl mx-auto">
 
         {/* HERO (cleaned UI) */}
-        <div className="relative overflow-hidden rounded-[40px] bg-gradient-to-r from-pink-500 via-rose-500 to-orange-400 p-10 text-white shadow-2xl mb-10">
+        <div className="relative overflow-hidden rounded-[40px] bg-linear-to-r from-pink-500 via-rose-500 to-orange-400 p-10 text-white shadow-2xl mb-10">
 
           <div className="absolute -top-20 -left-20 w-80 h-80 bg-white/20 blur-3xl rounded-full"></div>
           <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-yellow-300/20 blur-3xl rounded-full"></div>
@@ -153,7 +153,7 @@ function VendorOrders() {
               >
 
                 {/* HEADER */}
-                <div className="bg-gradient-to-r from-pink-500 to-orange-400 p-6 text-white">
+                <div className="bg-linear-to-r from-pink-500 to-orange-400 p-6 text-white">
 
                   <div className="flex justify-between items-center">
 

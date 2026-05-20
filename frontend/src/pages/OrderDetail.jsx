@@ -82,14 +82,14 @@ function OrderDetail() {
 
   if (!order) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 to-orange-50">
+      <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-pink-50 to-orange-50">
         <div className="h-12 w-12 border-4 border-pink-500 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-orange-50 py-10 px-4">
+    <div className="min-h-screen bg-linear-to-br from-pink-50 via-white to-orange-50 py-10 px-4">
 
       <div className="max-w-5xl mx-auto space-y-8">
 
@@ -163,7 +163,7 @@ function OrderDetail() {
           </div>
 
           {/* TOTAL */}
-          <div className="bg-gradient-to-r from-pink-500 to-orange-400 rounded-3xl p-6 text-white shadow-xl">
+          <div className="bg-linear-to-r from-pink-500 to-orange-400 rounded-3xl p-6 text-white shadow-xl">
 
             <p className="text-white/80 text-sm">Order Total</p>
 

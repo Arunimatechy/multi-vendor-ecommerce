@@ -39,7 +39,7 @@ function Cart() {
 
   return (
 
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-orange-50 py-12 px-4 relative overflow-hidden">
+    <div className="min-h-screen bg-linear-to-br from-pink-50 via-white to-orange-50 py-12 px-4 relative overflow-hidden">
 
       {/* BACKGROUND */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-pink-300/20 rounded-full blur-3xl"></div>
@@ -51,7 +51,7 @@ function Cart() {
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12">
 
           <div>
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-orange-400 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+            <div className="inline-flex items-center gap-2 bg-linear-to-r from-pink-500 to-orange-400 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
               <ShoppingBag size={16} />
               Shopping Cart
             </div>
@@ -68,7 +68,7 @@ function Cart() {
           {cartItems.length > 0 && (
             <div className="bg-white/80 backdrop-blur-xl border border-pink-100 shadow-xl rounded-3xl px-8 py-6">
               <p className="text-gray-500 text-sm">Total Amount</p>
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-pink-500 to-orange-400 bg-clip-text text-transparent">
+              <h2 className="text-3xl font-bold bg-linear-to-r from-pink-500 to-orange-400 bg-clip-text text-transparent">
                 ₹ {total.toFixed(2)}
               </h2>
             </div>
@@ -79,9 +79,9 @@ function Cart() {
         {/* EMPTY CART */}
         {cartItems.length === 0 ? (
 
-          <div className="bg-white/80 backdrop-blur-xl border border-pink-100 rounded-[32px] p-16 text-center shadow-2xl">
+          <div className="bg-white/80 backdrop-blur-xl border border-pink-100 rounded-4xl p-16 text-center shadow-2xl">
 
-            <div className="h-28 w-28 mx-auto rounded-full bg-gradient-to-r from-pink-500 to-orange-400 flex items-center justify-center shadow-xl mb-8">
+            <div className="h-28 w-28 mx-auto rounded-full bg-linear-to-r from-pink-500 to-orange-400 flex items-center justify-center shadow-xl mb-8">
               <ShoppingBag size={48} className="text-white" />
             </div>
 
@@ -95,7 +95,7 @@ function Cart() {
 
             <Link
               to="/"
-              className="inline-flex items-center gap-3 mt-8 bg-gradient-to-r from-pink-500 to-orange-400 text-white px-8 py-4 rounded-2xl font-semibold shadow-lg hover:scale-105 transition"
+              className="inline-flex items-center gap-3 mt-8 bg-linear-to-r from-pink-500 to-orange-400 text-white px-8 py-4 rounded-2xl font-semibold shadow-lg hover:scale-105 transition"
             >
               Continue Shopping
               <ArrowRight size={18} />
@@ -174,7 +174,7 @@ function Cart() {
                           dispatch(increaseQty(item.id));
                           toast.success("Increased");
                         }}
-                        className="px-4 py-3 bg-gradient-to-r from-pink-500 to-orange-400 text-white hover:opacity-90"
+                        className="px-4 py-3 bg-linear-to-r from-pink-500 to-orange-400 text-white hover:opacity-90"
                       >
                         <Plus size={18} />
                       </button>
@@ -182,7 +182,7 @@ function Cart() {
                     </div>
 
                     {/* TOTAL */}
-                    <div className="text-center min-w-[120px]">
+                    <div className="text-center min-w-30">
                       <p className="text-gray-500 text-sm">Total</p>
                       <p className="text-2xl font-black text-gray-900">
                         ₹ {item.price * item.quantity}
@@ -233,13 +233,13 @@ function Cart() {
                   Grand Total
                 </p>
 
-                <h2 className="text-3xl font-bold bg-gradient-to-r from-pink-500 to-orange-400 bg-clip-text text-transparent">
+                <h2 className="text-3xl font-bold bg-linear-to-r from-pink-500 to-orange-400 bg-clip-text text-transparent">
                   ₹ {total.toFixed(2)}
                 </h2>
 
                 <Link
                   to="/checkout"
-                  className="inline-flex items-center gap-3 mt-5 bg-gradient-to-r from-pink-500 to-orange-400 text-white px-8 py-4 rounded-2xl font-bold shadow-lg hover:scale-105 transition"
+                  className="inline-flex items-center gap-3 mt-5 bg-linear-to-r from-pink-500 to-orange-400 text-white px-8 py-4 rounded-2xl font-bold shadow-lg hover:scale-105 transition"
                 >
                   Checkout
                   <ArrowRight size={18} />

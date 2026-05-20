@@ -65,14 +65,14 @@ function VendorDashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 to-orange-50">
+      <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-pink-50 to-orange-50">
         <div className="h-14 w-14 border-4 border-pink-500 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-orange-50 py-12 px-4">
+    <div className="min-h-screen bg-linear-to-br from-pink-50 via-white to-orange-50 py-12 px-4">
       <div className="max-w-7xl mx-auto">
 
         {/* ================= STORE SECTION ================= */}
@@ -114,7 +114,7 @@ function VendorDashboard() {
 
                 <Link
                   to="/edit-store"
-                  className="bg-gradient-to-r from-pink-500 to-orange-400 text-white px-6 py-3 rounded-2xl font-semibold flex items-center gap-2 shadow-lg hover:scale-105 transition"
+                  className="bg-linear-to-r from-pink-500 to-orange-400 text-white px-6 py-3 rounded-2xl font-semibold flex items-center gap-2 shadow-lg hover:scale-105 transition"
                 >
                   <Eye size={18} />
                   Manage
@@ -135,7 +135,7 @@ function VendorDashboard() {
 
               <Link
                 to="/create-store"
-                className="inline-flex items-center gap-3 mt-8 bg-gradient-to-r from-pink-500 to-orange-400 text-white px-8 py-4 rounded-2xl font-semibold shadow-lg hover:scale-105 transition"
+                className="inline-flex items-center gap-3 mt-8 bg-linear-to-r from-pink-500 to-orange-400 text-white px-8 py-4 rounded-2xl font-semibold shadow-lg hover:scale-105 transition"
               >
                 <Store size={20} />
                 Create Store
@@ -161,7 +161,7 @@ function VendorDashboard() {
               <Link
                 key={i}
                 to={item.link}
-                className={`group relative overflow-hidden bg-gradient-to-br ${item.color} rounded-[34px] p-8 text-white shadow-xl hover:scale-105 transition-all duration-300`}
+                className={`group relative overflow-hidden bg-linear-to-br ${item.color} rounded-[34px] p-8 text-white shadow-xl hover:scale-105 transition-all duration-300`}
               >
 
                 {/* glow effect */}

@@ -90,17 +90,17 @@ function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-10 relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-100">
+    <div className="min-h-screen flex items-center justify-center px-4 py-10 relative overflow-hidden bg-linear-to-br from-slate-50 via-white to-slate-100">
 
       {/* SOFT BACKGROUND BLOBS */}
-      <div className="absolute -top-32 -left-32 w-[500px] h-[500px] bg-pink-300/30 blur-3xl rounded-full"></div>
-      <div className="absolute -bottom-32 -right-32 w-[500px] h-[500px] bg-orange-300/30 blur-3xl rounded-full"></div>
+      <div className="absolute -top-32 -left-32 w-125 h-125 bg-pink-300/30 blur-3xl rounded-full"></div>
+      <div className="absolute -bottom-32 -right-32 w-125 h-125 bg-orange-300/30 blur-3xl rounded-full"></div>
 
       {/* MAIN CARD */}
-      <div className="relative z-10 w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 bg-white/70 backdrop-blur-2xl border border-white/40 rounded-[32px] shadow-2xl overflow-hidden">
+      <div className="relative z-10 w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 bg-white/70 backdrop-blur-2xl border border-white/40 rounded-4xl shadow-2xl overflow-hidden">
 
         {/* LEFT PANEL */}
-        <div className="hidden lg:flex flex-col justify-center p-14 text-white bg-gradient-to-br from-pink-500 via-rose-500 to-orange-400 relative">
+        <div className="hidden lg:flex flex-col justify-center p-14 text-white bg-linear-to-br from-pink-500 via-rose-500 to-orange-400 relative">
 
           <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top_left,white,transparent)]"></div>
 
@@ -145,7 +145,7 @@ function Login() {
 
           {/* MOBILE ICON */}
           <div className="lg:hidden flex justify-center mb-8">
-            <div className="w-20 h-20 rounded-2xl bg-gradient-to-r from-pink-500 to-orange-400 flex items-center justify-center shadow-lg">
+            <div className="w-20 h-20 rounded-2xl bg-linear-to-r from-pink-500 to-orange-400 flex items-center justify-center shadow-lg">
               <ShoppingBag size={36} className="text-white" />
             </div>
           </div>
@@ -156,7 +156,7 @@ function Login() {
               Welcome Back
             </h2>
 
-            <div className="w-16 h-1 bg-gradient-to-r from-pink-500 to-orange-400 rounded-full mt-3 mx-auto lg:mx-0"></div>
+            <div className="w-16 h-1 bg-linear-to-r from-pink-500 to-orange-400 rounded-full mt-3 mx-auto lg:mx-0"></div>
 
             <p className="text-gray-500 mt-4">
               Login to continue your shopping journey
@@ -199,7 +199,7 @@ function Login() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-gradient-to-r from-pink-500 to-orange-400 text-white py-4 rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition transform hover:scale-[1.02] disabled:opacity-50"
+              className="w-full bg-linear-to-r from-pink-500 to-orange-400 text-white py-4 rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition transform hover:scale-[1.02] disabled:opacity-50"
             >
               {loading ? (
                 "Logging in..."

@@ -66,12 +66,12 @@ function CreateStore() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-orange-50 py-12 px-4">
+    <div className="min-h-screen bg-linear-to-br from-pink-50 via-white to-orange-50 py-12 px-4">
 
       <div className="max-w-5xl mx-auto space-y-10">
 
         {/* HERO */}
-        <div className="relative overflow-hidden rounded-[32px] bg-gradient-to-r from-pink-500 via-rose-500 to-orange-400 p-10 text-white shadow-2xl">
+        <div className="relative overflow-hidden rounded-4xl bg-linear-to-r from-pink-500 via-rose-500 to-orange-400 p-10 text-white shadow-2xl">
 
           <div className="absolute -top-20 -left-20 w-72 h-72 bg-white/20 blur-3xl rounded-full" />
           <div className="absolute bottom-0 right-0 w-72 h-72 bg-yellow-300/20 blur-3xl rounded-full" />
@@ -95,10 +95,10 @@ function CreateStore() {
         </div>
 
         {/* FORM CARD */}
-        <div className="bg-white rounded-[32px] shadow-xl border border-pink-100 overflow-hidden">
+        <div className="bg-white rounded-4xl shadow-xl border border-pink-100 overflow-hidden">
 
           {/* HEADER */}
-          <div className="bg-gradient-to-r from-pink-500 to-orange-400 px-8 py-5 text-white">
+          <div className="bg-linear-to-r from-pink-500 to-orange-400 px-8 py-5 text-white">
             <div className="flex items-center gap-2">
               <Sparkles size={20} />
               <h2 className="text-xl md:text-2xl font-bold">
@@ -201,7 +201,7 @@ function CreateStore() {
             {/* BUTTON */}
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-pink-500 via-rose-500 to-orange-400 text-white font-bold py-3 rounded-xl shadow-lg hover:opacity-90 transition"
+              className="w-full bg-linear-to-r from-pink-500 via-rose-500 to-orange-400 text-white font-bold py-3 rounded-xl shadow-lg hover:opacity-90 transition"
             >
               Create Store
             </button>

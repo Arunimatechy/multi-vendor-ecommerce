@@ -40,7 +40,7 @@ function StoreProfile() {
   // ================= LOADING =================
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-rose-50 via-white to-orange-50">
+      <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-rose-50 via-white to-orange-50">
         <div className="h-14 w-14 border-4 border-pink-500 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
@@ -49,11 +49,11 @@ function StoreProfile() {
   // ================= NO STORE =================
   if (!store) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-rose-50 via-white to-orange-50 px-4">
+      <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-rose-50 via-white to-orange-50 px-4">
 
-        <div className="bg-white/80 backdrop-blur-xl border border-pink-100 shadow-2xl rounded-[32px] p-10 text-center max-w-md w-full">
+        <div className="bg-white/80 backdrop-blur-xl border border-pink-100 shadow-2xl rounded-4xl p-10 text-center max-w-md w-full">
 
-          <div className="w-20 h-20 rounded-3xl bg-gradient-to-r from-pink-500 to-orange-400 flex items-center justify-center mx-auto mb-6 shadow-lg">
+          <div className="w-20 h-20 rounded-3xl bg-linear-to-r from-pink-500 to-orange-400 flex items-center justify-center mx-auto mb-6 shadow-lg">
 
             <Store className="text-white" size={34} />
 
@@ -75,7 +75,7 @@ function StoreProfile() {
 
   return (
 
-    <div className="min-h-screen bg-gradient-to-br from-rose-50 via-white to-orange-50 py-10 px-4">
+    <div className="min-h-screen bg-linear-to-br from-rose-50 via-white to-orange-50 py-10 px-4">
 
       <div className="max-w-6xl mx-auto">
 
@@ -91,7 +91,7 @@ function StoreProfile() {
               className="w-full h-80 object-cover"
             />
 
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+            <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent"></div>
 
             <div className="absolute top-6 right-6 bg-white/20 backdrop-blur-xl border border-white/20 px-5 py-2 rounded-full flex items-center gap-2 text-white text-sm font-medium">
               <Sparkles size={16} />
@@ -150,7 +150,7 @@ function StoreProfile() {
             {/* ================= STATS ================= */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12">
 
-              <div className="bg-gradient-to-br from-pink-50 to-rose-50 border border-pink-100 rounded-3xl p-6 hover:shadow-xl transition">
+              <div className="bg-linear-to-br from-pink-50 to-rose-50 border border-pink-100 rounded-3xl p-6 hover:shadow-xl transition">
                 <div className="w-14 h-14 rounded-2xl bg-pink-500 flex items-center justify-center shadow-lg">
                   <ShieldCheck className="text-white" />
                 </div>
@@ -158,7 +158,7 @@ function StoreProfile() {
                 <p className="text-2xl font-bold text-gray-800 mt-2">Active</p>
               </div>
 
-              <div className="bg-gradient-to-br from-orange-50 to-amber-50 border border-orange-100 rounded-3xl p-6 hover:shadow-xl transition">
+              <div className="bg-linear-to-br from-orange-50 to-amber-50 border border-orange-100 rounded-3xl p-6 hover:shadow-xl transition">
                 <div className="w-14 h-14 rounded-2xl bg-orange-400 flex items-center justify-center shadow-lg">
                   <Package className="text-white" />
                 </div>
@@ -166,7 +166,7 @@ function StoreProfile() {
                 <p className="text-2xl font-bold text-gray-800 mt-2">Enabled</p>
               </div>
 
-              <div className="bg-gradient-to-br from-violet-50 to-fuchsia-50 border border-violet-100 rounded-3xl p-6 hover:shadow-xl transition">
+              <div className="bg-linear-to-br from-violet-50 to-fuchsia-50 border border-violet-100 rounded-3xl p-6 hover:shadow-xl transition">
                 <div className="w-14 h-14 rounded-2xl bg-violet-500 flex items-center justify-center shadow-lg">
                   <Store className="text-white" />
                 </div>

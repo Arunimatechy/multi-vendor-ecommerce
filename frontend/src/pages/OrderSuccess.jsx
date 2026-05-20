@@ -28,18 +28,18 @@ function OrderSuccess() {
 
   return (
 
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 flex items-center justify-center px-4 py-10">
+    <div className="min-h-screen bg-linear-to-br from-gray-50 via-white to-gray-100 flex items-center justify-center px-4 py-10">
 
       {/* SOFT BACKGROUND GLOW (subtle, premium look) */}
-      <div className="absolute top-[-100px] left-[-100px] w-96 h-96 bg-blue-200/20 blur-3xl rounded-full"></div>
-      <div className="absolute bottom-[-100px] right-[-100px] w-96 h-96 bg-indigo-200/20 blur-3xl rounded-full"></div>
+      <div className="absolute -top-25 -left-25 w-96 h-96 bg-blue-200/20 blur-3xl rounded-full"></div>
+      <div className="absolute -bottom-25 -right-25 w-96 h-96 bg-indigo-200/20 blur-3xl rounded-full"></div>
 
       {/* CARD */}
       <div className="relative z-10 bg-white border border-gray-100 shadow-xl rounded-3xl p-10 max-w-lg w-full">
 
         {/* ICON */}
         <div className="flex justify-center">
-          <div className="h-24 w-24 rounded-full bg-gradient-to-r from-green-500 to-emerald-400 flex items-center justify-center shadow-lg">
+          <div className="h-24 w-24 rounded-full bg-linear-to-r from-green-500 to-emerald-400 flex items-center justify-center shadow-lg">
             <CheckCircle2 size={54} className="text-white" />
           </div>
         </div>
@@ -87,7 +87,7 @@ function OrderSuccess() {
 
             </div>
 
-            <div className="flex-1 h-[2px] bg-green-200 mx-2 rounded-full"></div>
+            <div className="flex-1 h-0.5 bg-green-200 mx-2 rounded-full"></div>
 
             <div className="text-center flex-1">
 
@@ -101,7 +101,7 @@ function OrderSuccess() {
 
             </div>
 
-            <div className="flex-1 h-[2px] bg-gray-200 mx-2 rounded-full"></div>
+            <div className="flex-1 h-0.5 bg-gray-200 mx-2 rounded-full"></div>
 
             <div className="text-center flex-1">
 

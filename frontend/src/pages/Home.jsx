@@ -67,7 +67,7 @@ function Home() {
   }, [search, category, sort]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-orange-50 py-10 px-4 relative overflow-hidden">
+    <div className="min-h-screen bg-linear-to-br from-pink-50 via-white to-orange-50 py-10 px-4 relative overflow-hidden">
 
       {/* Background glow */}
       <div className="absolute -top-20 -left-20 w-96 h-96 bg-pink-300/30 rounded-full blur-3xl"></div>
@@ -76,7 +76,7 @@ function Home() {
       <div className="max-w-7xl mx-auto relative z-10">
 
         {/* HERO */}
-        <div className="relative overflow-hidden rounded-3xl p-10 mb-10 bg-gradient-to-r from-pink-500 via-rose-500 to-orange-400 text-white shadow-2xl">
+        <div className="relative overflow-hidden rounded-3xl p-10 mb-10 bg-linear-to-r from-pink-500 via-rose-500 to-orange-400 text-white shadow-2xl">
           <h1 className="text-4xl md:text-5xl font-black">
             Luxora Marketplace
           </h1>

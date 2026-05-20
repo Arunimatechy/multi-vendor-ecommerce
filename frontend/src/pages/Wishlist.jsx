@@ -95,7 +95,7 @@ function Wishlist() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-rose-50 py-10 px-4">
+    <div className="min-h-screen bg-linear-to-br from-pink-50 via-white to-rose-50 py-10 px-4">
 
       <div className="max-w-6xl mx-auto">
 

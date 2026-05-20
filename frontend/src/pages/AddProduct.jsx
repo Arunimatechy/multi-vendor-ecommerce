@@ -452,7 +452,7 @@ function AddProduct() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full mt-8 bg-gradient-to-r from-pink-500 to-orange-400 hover:opacity-90 text-white py-4 rounded-2xl font-bold text-lg shadow-lg transition-all duration-300 hover:scale-[1.01] disabled:opacity-50"
+            className="w-full mt-8 bg-linear-to-r from-pink-500 to-orange-400 hover:opacity-90 text-white py-4 rounded-2xl font-bold text-lg shadow-lg transition-all duration-300 hover:scale-[1.01] disabled:opacity-50"
           >
 
             {

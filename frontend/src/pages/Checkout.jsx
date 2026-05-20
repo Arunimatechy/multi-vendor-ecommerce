@@ -177,13 +177,13 @@ function Checkout() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-orange-50 py-10 px-4">
+    <div className="min-h-screen bg-linear-to-br from-pink-50 via-white to-orange-50 py-10 px-4">
       <div className="max-w-6xl mx-auto">
 
         {/* HEADER */}
         <div className="bg-white rounded-[28px] shadow-lg p-7 mb-8 border border-pink-100">
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-r from-pink-500 to-orange-400 flex items-center justify-center">
+            <div className="w-14 h-14 rounded-2xl bg-linear-to-r from-pink-500 to-orange-400 flex items-center justify-center">
               <ShoppingBag className="text-white" size={28} />
             </div>
             <div>
@@ -296,7 +296,7 @@ function Checkout() {
                     onChange={(e)=>setCouponCode(e.target.value)}
                     placeholder="Enter code"
                   />
-                  <button onClick={()=>applyCoupon()} className="bg-gradient-to-r from-pink-500 to-orange-400 text-white px-4 rounded-xl">
+                  <button onClick={()=>applyCoupon()} className="bg-linear-to-r from-pink-500 to-orange-400 text-white px-4 rounded-xl">
                     Apply
                   </button>
                 </div>
@@ -311,7 +311,7 @@ function Checkout() {
 
                 <div className="space-y-3">
                   {coupons.length ? coupons.map(coupon => (
-                    <div key={coupon.id} className="p-4 rounded-2xl border bg-gradient-to-r from-pink-50 to-white hover:shadow-md transition">
+                    <div key={coupon.id} className="p-4 rounded-2xl border bg-linear-to-r from-pink-50 to-white hover:shadow-md transition">
                       <div className="flex justify-between items-center">
                         <div>
                           <p className="font-bold text-pink-600">{coupon.code}</p>
@@ -325,7 +325,7 @@ function Checkout() {
 
                         <button
                           onClick={()=>applyCoupon(coupon.code)}
-                          className="bg-gradient-to-r from-pink-500 to-orange-400 text-white px-4 py-2 rounded-xl text-sm"
+                          className="bg-linear-to-r from-pink-500 to-orange-400 text-white px-4 py-2 rounded-xl text-sm"
                         >
                           Use
                         </button>
@@ -358,7 +358,7 @@ function Checkout() {
                       ? handleRazorpayPayment()
                       : placeCODOrder()
                   }
-                  className="w-full mt-4 bg-gradient-to-r from-pink-500 to-orange-400 text-white py-3 rounded-2xl font-bold"
+                  className="w-full mt-4 bg-linear-to-r from-pink-500 to-orange-400 text-white py-3 rounded-2xl font-bold"
                 >
                   {paymentMethod==="razorpay" ? "Pay Now" : "Place Order"}
                 </button>

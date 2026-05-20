@@ -111,21 +111,21 @@ function EditStore() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 to-yellow-50">
+      <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-orange-50 to-yellow-50">
         <div className="h-14 w-14 border-4 border-orange-500 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-yellow-50 py-10 px-4">
+    <div className="min-h-screen bg-linear-to-br from-orange-50 via-white to-yellow-50 py-10 px-4">
       <div className="max-w-6xl mx-auto grid lg:grid-cols-3 gap-8">
 
         {/* FORM */}
         <div className="lg:col-span-2">
           <div className="bg-white/90 backdrop-blur-xl border border-orange-100 rounded-3xl shadow-2xl overflow-hidden">
 
-            <div className="bg-gradient-to-r from-orange-500 to-amber-500 p-8 text-white">
+            <div className="bg-linear-to-r from-orange-500 to-amber-500 p-8 text-white">
               <div className="flex items-center gap-4">
                 <Store size={34} />
                 <div>
@@ -165,7 +165,7 @@ function EditStore() {
 
               <button
                 disabled={submitting}
-                className="w-full bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-3 hover:scale-[1.02] transition"
+                className="w-full bg-linear-to-r from-orange-500 to-amber-500 text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-3 hover:scale-[1.02] transition"
               >
                 <Save />
                 {submitting ? "Updating..." : "Update Store"}

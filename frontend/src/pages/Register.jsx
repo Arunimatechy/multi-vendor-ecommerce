@@ -59,16 +59,16 @@ function Register() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 via-white to-orange-50 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-pink-50 via-white to-orange-50 px-4">
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-5xl grid lg:grid-cols-2 bg-white/70 backdrop-blur-2xl rounded-[32px] shadow-2xl overflow-hidden border border-white/40"
+        className="w-full max-w-5xl grid lg:grid-cols-2 bg-white/70 backdrop-blur-2xl rounded-4xl shadow-2xl overflow-hidden border border-white/40"
       >
 
         {/* LEFT SIDE */}
-        <div className="hidden lg:flex flex-col justify-center p-14 text-white bg-gradient-to-br from-pink-500 via-rose-500 to-orange-400 relative">
+        <div className="hidden lg:flex flex-col justify-center p-14 text-white bg-linear-to-br from-pink-500 via-rose-500 to-orange-400 relative">
 
           <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top_left,white,transparent)]"></div>
 
@@ -103,7 +103,7 @@ function Register() {
               Create Account
             </h2>
 
-            <div className="w-14 h-1 bg-gradient-to-r from-pink-500 to-orange-400 rounded-full mt-2"></div>
+            <div className="w-14 h-1 bg-linear-to-r from-pink-500 to-orange-400 rounded-full mt-2"></div>
 
             <p className="text-gray-500 mt-3">
               Join NovaMart and start shopping or selling
@@ -186,7 +186,7 @@ function Register() {
               <label
                 className={`p-5 rounded-2xl cursor-pointer border transition-all ${
                   formData.role === "customer"
-                    ? "bg-gradient-to-r from-pink-500 to-orange-400 text-white shadow-lg"
+                    ? "bg-linear-to-r from-pink-500 to-orange-400 text-white shadow-lg"
                     : "bg-gray-50 border-gray-200"
                 }`}
               >
@@ -211,7 +211,7 @@ function Register() {
               <label
                 className={`p-5 rounded-2xl cursor-pointer border transition-all ${
                   formData.role === "vendor"
-                    ? "bg-gradient-to-r from-pink-500 to-orange-400 text-white shadow-lg"
+                    ? "bg-linear-to-r from-pink-500 to-orange-400 text-white shadow-lg"
                     : "bg-gray-50 border-gray-200"
                 }`}
               >
@@ -238,7 +238,7 @@ function Register() {
             {/* BUTTON */}
             <button
               disabled={loading}
-              className="w-full bg-gradient-to-r from-pink-500 to-orange-400 text-white p-4 rounded-2xl font-bold shadow-lg hover:shadow-xl transition disabled:opacity-50"
+              className="w-full bg-linear-to-r from-pink-500 to-orange-400 text-white p-4 rounded-2xl font-bold shadow-lg hover:shadow-xl transition disabled:opacity-50"
             >
               {loading ? "Creating Account..." : "Create Account"}
             </button>
