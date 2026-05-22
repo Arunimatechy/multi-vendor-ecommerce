@@ -242,9 +242,7 @@ DEBUG = os.getenv(
 ) == "True"
 
 ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "localhost",
-     "multi-vendor-ecommerce-44o8.onrender.com",
+    "*"
 ]
 
 
@@ -444,7 +442,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = (
     "whitenoise.storage.CompressedManifestStaticFilesStorage"
 )
-
+WHITENOISE_USE_FINDERS = True
 
 # ======================================================
 # MEDIA FILES
@@ -477,6 +475,7 @@ STORAGES = {
 CORS_ALLOWED_ORIGINS = [
 
     "http://localhost:5173",
+    "https://multi-vendor-ecommerce.vercel.app",
 
     
 ]
@@ -488,6 +487,7 @@ CORS_ALLOWED_ORIGINS = [
 
 CSRF_TRUSTED_ORIGINS = [
     "https://*.onrender.com",
+    "https://*.vercel.app",
 ]
 
 
@@ -536,7 +536,8 @@ SIMPLE_JWT = {
 # ======================================================
 
 SECURE_PROXY_SSL_HEADER = (
-    ("HTTP_X_FORWARDED_PROTO", "https")
+    "HTTP_X_FORWARDED_PROTO",
+    "https",
 )
 
 
