@@ -275,15 +275,11 @@ STORAGES = {
 # CORS
 # ======================================================
 
-CORS_ALLOWED_ORIGINS = [
+# ======================================================
+# CORS
+# ======================================================
 
-    "http://localhost:5173",
-    "https://multi-vendor-ecommerce.vercel.app",
-    "https://multi-vendor-ecommerce-h4gx213w8-arunimas-projects-140d0a2a.vercel.app",
-
-    
-]
-
+CORS_ALLOW_ALL_ORIGINS = True
 
 # ======================================================
 # CSRF
