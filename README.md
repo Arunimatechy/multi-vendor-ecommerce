@@ -1,85 +1,94 @@
-# 🛒 Multi Vendor Ecommerce Platform
+# 🛍️ Multi Vendor Ecommerce Platform
 
-A full-featured Multi Vendor Ecommerce Marketplace built with Django, Django REST Framework, PostgreSQL, and React.
+A full-stack Multi Vendor Ecommerce Platform built using Django, Django REST Framework, React, Redux Toolkit, and PostgreSQL.
 
-The platform allows multiple vendors to manage their own stores, products, and orders while customers can browse, purchase products, and track orders seamlessly.
-
----
-
-## 🚀 Live Demo
-
-Frontend: https://your-frontend-url.vercel.app
-
-Backend API: https://your-backend-url.onrender.com
+This application allows multiple vendors to manage and sell products through a single marketplace while customers can browse products, place orders, and track purchases.
 
 ---
 
-## ✨ Features
+## 🚀 Project Highlights
 
-### 👤 Customer
+- Multi Vendor Marketplace
+- JWT Authentication & Authorization
+- Product Management System
+- Shopping Cart & Checkout
+- Order Management
+- Vendor Dashboard
+- Admin Dashboard
+- RESTful API Architecture
+- Responsive User Interface
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- React.js
+- Redux Toolkit
+- Axios
+- Bootstrap / Tailwind CSS
+
+### Backend
+- Django
+- Django REST Framework
+- JWT Authentication
+
+### Database
+- PostgreSQL
+
+### Tools
+- Git
+- GitHub
+- Postman
+
+---
+
+## 📌 Features
+
+### 👤 Customer Features
 
 - User Registration & Login
 - Browse Products
-- Search & Filter Products
+- Search Products
+- Product Details Page
 - Add to Cart
 - Wishlist
-- Checkout
-- Order Tracking
+- Place Orders
+- View Order History
 - Profile Management
 
-### 🏪 Vendor
+### 🏪 Vendor Features
 
 - Vendor Registration
-- Product Management
-- Inventory Management
-- Order Management
-- Sales Dashboard
+- Vendor Dashboard
+- Add Products
+- Update Products
+- Delete Products
+- Manage Inventory
+- View Orders
 
-### 🛡️ Admin
+### 🔧 Admin Features
 
-- User Management
-- Vendor Approval
-- Product Moderation
-- Order Monitoring
-- Analytics Dashboard
+- Manage Users
+- Manage Vendors
+- Manage Products
+- Manage Categories
+- Monitor Orders
+- Platform Control
 
 ---
 
 ## 🏗️ System Architecture
 
 ```text
-Customer
-   │
-Frontend (React)
-   │
-REST API (Django REST Framework)
-   │
-PostgreSQL Database
+React Frontend
+      │
+      ▼
+Django REST API
+      │
+      ▼
+ PostgreSQL Database
 ```
-
----
-
-## 🛠️ Tech Stack
-
-### Backend
-
-- Python
-- Django
-- Django REST Framework
-- PostgreSQL
-- JWT Authentication
-
-### Frontend
-
-- React
-- Redux Toolkit
-- Tailwind CSS
-- Axios
-
-### Deployment
-
-- Render
-- Vercel
 
 ---
 
@@ -87,42 +96,51 @@ PostgreSQL Database
 
 ```bash
 multi-vendor-ecommerce/
+
+backend/
 │
-├── backend/
-│   ├── users/
-│   ├── products/
-│   ├── vendors/
-│   ├── orders/
-│   ├── payments/
-│   └── manage.py
+├── users/
+├── vendors/
+├── products/
+├── orders/
+├── payments/
+├── reviews/
+├── wishlist/
+└── manage.py
+
+frontend/
 │
-├── frontend/
-│   ├── src/
-│   ├── components/
-│   ├── pages/
-│   └── redux/
-│
-└── README.md
+├── src/
+├── components/
+├── pages/
+├── redux/
+├── services/
+└── assets/
 ```
 
 ---
 
-## ⚙️ Installation
+## ⚙️ Installation Guide
 
-### Clone Repository
+### 1. Clone Repository
 
 ```bash
 git clone https://github.com/Arunimatechy/multi-vendor-ecommerce.git
+
 cd multi-vendor-ecommerce
 ```
 
-### Create Virtual Environment
+---
+
+### 2. Backend Setup
+
+Create Virtual Environment
 
 ```bash
 python -m venv venv
 ```
 
-### Activate Environment
+Activate Environment
 
 Windows
 
@@ -136,41 +154,27 @@ Linux/Mac
 source venv/bin/activate
 ```
 
-### Install Requirements
+Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Configure Environment Variables
-
-Create `.env`
-
-```env
-SECRET_KEY=your_secret_key
-DEBUG=True
-
-DB_NAME=postgres
-DB_USER=postgres
-DB_PASSWORD=password
-DB_HOST=localhost
-DB_PORT=5432
-```
-
-### Run Migrations
+Apply Migrations
 
 ```bash
 python manage.py makemigrations
+
 python manage.py migrate
 ```
 
-### Create Superuser
+Create Admin User
 
 ```bash
 python manage.py createsuperuser
 ```
 
-### Run Server
+Run Server
 
 ```bash
 python manage.py runserver
@@ -178,50 +182,86 @@ python manage.py runserver
 
 ---
 
-## 🔐 Authentication
+### 3. Frontend Setup
 
-JWT Authentication
+```bash
+cd frontend
 
-```http
-POST /api/token/
-```
+npm install
 
-Returns
-
-```json
-{
-  "access": "token",
-  "refresh": "token"
-}
+npm run dev
 ```
 
 ---
 
-## 📦 Main API Endpoints
+## 🔐 Environment Variables
+
+Create a .env file:
+
+```env
+SECRET_KEY=your_secret_key
+
+DEBUG=True
+
+DB_NAME=your_database_name
+DB_USER=your_database_user
+DB_PASSWORD=your_database_password
+DB_HOST=localhost
+DB_PORT=5432
+
+JWT_SECRET_KEY=your_jwt_secret_key
+```
+
+---
+
+## 📡 API Modules
+
+### Authentication
+
+```http
+POST /api/auth/register/
+POST /api/auth/login/
+POST /api/auth/logout/
+```
 
 ### Products
 
 ```http
-GET /api/products/
-POST /api/products/create/
-GET /api/products/{id}/
-PUT /api/products/{id}/
-DELETE /api/products/{id}/
+GET    /api/products/
+GET    /api/products/:id/
+POST   /api/products/
+PUT    /api/products/:id/
+DELETE /api/products/:id/
 ```
 
 ### Orders
 
 ```http
-GET /api/orders/
-POST /api/orders/create/
+GET    /api/orders/
+POST   /api/orders/
 ```
 
 ### Vendors
 
 ```http
-GET /api/vendors/
-POST /api/vendors/register/
+GET    /api/vendors/
+POST   /api/vendors/
 ```
+
+---
+
+## 🎯 Learning Outcomes
+
+This project helped me gain practical experience in:
+
+- Full Stack Web Development
+- REST API Development
+- Authentication & Authorization
+- Database Design
+- State Management with Redux Toolkit
+- Frontend and Backend Integration
+- Git & GitHub Workflow
+- Project Deployment
 
 ---
 
@@ -229,31 +269,31 @@ POST /api/vendors/register/
 
 ### Home Page
 
-![Home](screenshots/home.png)
+Add screenshot here
 
-### Product Details
+### Product Page
 
-![Product](screenshots/product.png)
+Add screenshot here
 
 ### Vendor Dashboard
 
-![Vendor](screenshots/vendor-dashboard.png)
+Add screenshot here
 
 ### Admin Dashboard
 
-![Admin](screenshots/admin-dashboard.png)
+Add screenshot here
 
 ---
 
-## 🔥 Future Enhancements
+## 🚀 Future Enhancements
 
-- Stripe Payment Integration
-- Razorpay Integration
-- Product Reviews
-- Real-time Notifications
-- Vendor Analytics
-- Recommendation System
-- AI Product Search
+- Online Payment Gateway Integration
+- Product Recommendation System
+- Real-Time Notifications
+- Email Verification
+- Docker Deployment
+- AI Powered Search
+- Advanced Analytics Dashboard
 
 ---
 
@@ -262,40 +302,36 @@ POST /api/vendors/register/
 Contributions are welcome.
 
 1. Fork the repository
-2. Create your feature branch
-
-```bash
-git checkout -b feature/new-feature
-```
-
+2. Create a feature branch
 3. Commit changes
-
-```bash
-git commit -m "Added new feature"
-```
-
-4. Push
-
-```bash
-git push origin feature/new-feature
-```
-
-5. Open Pull Request
+4. Push to GitHub
+5. Create a Pull Request
 
 ---
 
-## 👨‍💻 Author
+## 👨‍💻 Developer
 
-Arunima
+### Arunima
+
+Full Stack Developer
+
+**Skills**
+- React.js
+- Redux Toolkit
+- JavaScript
+- Python
+- Django
+- Django REST Framework
+- PostgreSQL
+- Git & GitHub
 
 GitHub:
 https://github.com/Arunimatechy
-
-LinkedIn:
-https://linkedin.com/in/your-profile
 
 ---
 
 ## ⭐ Support
 
-If you found this project helpful, please give it a star ⭐
+If you found this project useful, consider giving it a star on GitHub.
+
+⭐ Star the repository to support the project.
