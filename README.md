@@ -1,110 +1,139 @@
 # 🛒 Multi Vendor Ecommerce Platform
 
-A full-stack multi-vendor ecommerce web application built using Django REST Framework and React JS.
+A full-featured Multi Vendor Ecommerce Marketplace built with Django, Django REST Framework, PostgreSQL, and React.
 
-This platform allows customers to browse products, place orders, track deliveries, write reviews, and manage their shopping experience, while vendors can manage products, orders, and delivery status through a dedicated vendor dashboard.
+The platform allows multiple vendors to manage their own stores, products, and orders while customers can browse, purchase products, and track orders seamlessly.
 
 ---
 
-# 🚀 Features
+## 🚀 Live Demo
 
-## 👤 Customer Features
+Frontend: https://your-frontend-url.vercel.app
 
-- User Authentication (JWT Login/Register)
+Backend API: https://your-backend-url.onrender.com
+
+---
+
+## ✨ Features
+
+### 👤 Customer
+
+- User Registration & Login
 - Browse Products
-- Product Search & Filtering
+- Search & Filter Products
 - Add to Cart
-- Wishlist System
-- Place Orders
+- Wishlist
+- Checkout
 - Order Tracking
-- Vendor-wise Delivery Status
-- Product Reviews & Ratings
-- Cancel Orders
-- Delete Orders
-- Responsive UI
+- Profile Management
 
----
-
-## 🏪 Vendor Features
+### 🏪 Vendor
 
 - Vendor Registration
-- Vendor Dashboard
-- Add / Edit / Delete Products
-- Manage Orders
-- Update Delivery Status
-- View Customer Details
-- Vendor-specific Order Management
+- Product Management
+- Inventory Management
+- Order Management
+- Sales Dashboard
+
+### 🛡️ Admin
+
+- User Management
+- Vendor Approval
+- Product Moderation
+- Order Monitoring
+- Analytics Dashboard
 
 ---
 
-# 🧰 Tech Stack
+## 🏗️ System Architecture
 
-## Frontend
-- React JS
-- React Router DOM
-- Axios
-- Tailwind CSS
-- React Hot Toast
-- Lucide React Icons
+```text
+Customer
+   │
+Frontend (React)
+   │
+REST API (Django REST Framework)
+   │
+PostgreSQL Database
+```
 
-## Backend
+---
+
+## 🛠️ Tech Stack
+
+### Backend
+
+- Python
 - Django
 - Django REST Framework
+- PostgreSQL
 - JWT Authentication
-- PostgreSQL / Neon Database
+
+### Frontend
+
+- React
+- Redux Toolkit
+- Tailwind CSS
+- Axios
+
+### Deployment
+
+- Render
+- Vercel
 
 ---
 
-# 📦 Project Structure
+## 📂 Project Structure
 
 ```bash
-frontend/
-backend/
-users/
-products/
-orders/
-reviews/
-wishlist/
-cart/
-vendors/
+multi-vendor-ecommerce/
+│
+├── backend/
+│   ├── users/
+│   ├── products/
+│   ├── vendors/
+│   ├── orders/
+│   ├── payments/
+│   └── manage.py
+│
+├── frontend/
+│   ├── src/
+│   ├── components/
+│   ├── pages/
+│   └── redux/
+│
+└── README.md
 ```
 
 ---
 
-# ⚙️ Installation
+## ⚙️ Installation
 
-## 1️⃣ Clone Repository
-
-```bash
-git clone https://github.com/YOUR_USERNAME/multi-vendor-ecommerce.git
-```
-
----
-
-## 2️⃣ Backend Setup
+### Clone Repository
 
 ```bash
-cd backend
+git clone https://github.com/Arunimatechy/multi-vendor-ecommerce.git
+cd multi-vendor-ecommerce
 ```
 
 ### Create Virtual Environment
 
 ```bash
-python -m venv env
+python -m venv venv
 ```
 
 ### Activate Environment
 
-#### Windows
+Windows
 
 ```bash
-env\Scripts\activate
+venv\Scripts\activate
 ```
 
-#### Mac/Linux
+Linux/Mac
 
 ```bash
-source env/bin/activate
+source venv/bin/activate
 ```
 
 ### Install Requirements
@@ -113,33 +142,35 @@ source env/bin/activate
 pip install -r requirements.txt
 ```
 
----
-
-## 3️⃣ Configure Environment Variables
+### Configure Environment Variables
 
 Create `.env`
 
 ```env
 SECRET_KEY=your_secret_key
-
 DEBUG=True
 
-DATABASE_URL=your_neon_database_url
-
-ALLOWED_HOSTS=127.0.0.1,localhost
+DB_NAME=postgres
+DB_USER=postgres
+DB_PASSWORD=password
+DB_HOST=localhost
+DB_PORT=5432
 ```
 
----
-
-## 4️⃣ Run Migrations
+### Run Migrations
 
 ```bash
+python manage.py makemigrations
 python manage.py migrate
 ```
 
----
+### Create Superuser
 
-## 5️⃣ Start Backend Server
+```bash
+python manage.py createsuperuser
+```
+
+### Run Server
 
 ```bash
 python manage.py runserver
@@ -147,76 +178,124 @@ python manage.py runserver
 
 ---
 
-## 6️⃣ Frontend Setup
+## 🔐 Authentication
 
-```bash
-cd frontend
-npm install
-npm run dev
+JWT Authentication
+
+```http
+POST /api/token/
+```
+
+Returns
+
+```json
+{
+  "access": "token",
+  "refresh": "token"
+}
 ```
 
 ---
 
-# 🌐 API Features
+## 📦 Main API Endpoints
 
-- JWT Authentication
-- Product APIs
-- Cart APIs
-- Wishlist APIs
-- Order APIs
-- Review APIs
-- Vendor APIs
+### Products
 
----
+```http
+GET /api/products/
+POST /api/products/create/
+GET /api/products/{id}/
+PUT /api/products/{id}/
+DELETE /api/products/{id}/
+```
 
-# ⭐ Vendor-wise Delivery System
+### Orders
 
-Each product inside an order has its own delivery status.
+```http
+GET /api/orders/
+POST /api/orders/create/
+```
 
-Example:
+### Vendors
 
-- Vendor A → Delivered
-- Vendor B → Processing
-- Vendor C → Shipped
-
-Customers can review only delivered products.
-
----
-
-# 🔐 Authentication
-
-JWT Authentication using:
-
-- Access Token
-- Refresh Token
+```http
+GET /api/vendors/
+POST /api/vendors/register/
+```
 
 ---
 
-# 📸 Screenshots
+## 📸 Screenshots
 
-Add screenshots here.
+### Home Page
 
----
+![Home](screenshots/home.png)
 
-# 🚀 Deployment
+### Product Details
 
-Backend:
-- Render / Railway / PythonAnywhere
+![Product](screenshots/product.png)
 
-Frontend:
-- Vercel / Netlify
+### Vendor Dashboard
 
-Database:
-- Neon PostgreSQL
+![Vendor](screenshots/vendor-dashboard.png)
 
----
+### Admin Dashboard
 
-# 👨‍💻 Author
-
-Akuram V
+![Admin](screenshots/admin-dashboard.png)
 
 ---
 
-# 📄 License
+## 🔥 Future Enhancements
 
-This project is for educational and portfolio purposes.
+- Stripe Payment Integration
+- Razorpay Integration
+- Product Reviews
+- Real-time Notifications
+- Vendor Analytics
+- Recommendation System
+- AI Product Search
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome.
+
+1. Fork the repository
+2. Create your feature branch
+
+```bash
+git checkout -b feature/new-feature
+```
+
+3. Commit changes
+
+```bash
+git commit -m "Added new feature"
+```
+
+4. Push
+
+```bash
+git push origin feature/new-feature
+```
+
+5. Open Pull Request
+
+---
+
+## 👨‍💻 Author
+
+Arunima
+
+GitHub:
+https://github.com/Arunimatechy
+
+LinkedIn:
+https://linkedin.com/in/your-profile
+
+---
+
+## ⭐ Support
+
+If you found this project helpful, please give it a star ⭐
