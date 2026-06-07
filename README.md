@@ -285,6 +285,13 @@ Detailed product information including pricing, stock status, and descriptions.
 
 ---
 
+### 📦 Product Details
+
+![Product Details](screenshot/product-details.png)
+
+View detailed product information, pricing, descriptions, and images.
+
+---
 ### 🏪 Vendor Dashboard
 
 ![Vendor Dashboard](screenshot/vendor-dashboard.png)
