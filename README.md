@@ -267,17 +267,31 @@ This project helped me gain practical experience in:
 
 ## 📸 Screenshots
 
-### Home Page
 
-home-page.png
 
-### Product Page
+### 🏠 Home Page
 
-product-page.png
+![Home Page](screenshot/home-page.png)
 
-### Vendor Dashboard
+Customers can browse products, categories, and featured items from the marketplace.
 
-vendor-dashboard.png
+---
+
+### 📦 Product Page
+
+![Product Page](screenshot/product-page.png)
+
+Detailed product information including pricing, stock status, and descriptions.
+
+---
+
+### 🏪 Vendor Dashboard
+
+![Vendor Dashboard](screenshot/vendor-dashboard.png)
+
+Vendors can manage products, inventory, and customer orders from a dedicated dashboard.
+
+---
 
 
 ---
