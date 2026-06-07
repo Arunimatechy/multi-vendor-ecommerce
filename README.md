@@ -269,15 +269,15 @@ This project helped me gain practical experience in:
 
 ### Home Page
 
-Add screenshot here
+home-page.png
 
 ### Product Page
 
-Add screenshot here
+product-page.png
 
 ### Vendor Dashboard
 
-Add screenshot here
+vendor-dashboard.png
 
 
 ---
