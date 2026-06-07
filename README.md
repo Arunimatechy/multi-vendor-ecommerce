@@ -279,9 +279,6 @@ Add screenshot here
 
 Add screenshot here
 
-### Admin Dashboard
-
-Add screenshot here
 
 ---
 
